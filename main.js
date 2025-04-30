@@ -13,7 +13,7 @@ const config = {
     address: "0xa44F706e116eAD0A09ba1e2FdC0ac98972630052",
     defaultTokenURI: "https://ipfs.io/ipfs/bafybeig6wisourp6cvqqczwyfa6nyz7jwbsbbgbilz3d3m2maenxnzvxui/1.json",
     autoApprove: true,
-    mintPrice: "0.01",
+    mintPrice: "0.005",
     abi: [
       {
         "inputs": [],
