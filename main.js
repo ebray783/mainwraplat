@@ -185,8 +185,9 @@ const config = {
     "name": "Unwrapped",
     "type": "event"
   }
-];
+]
 
+ };     
   chainId: 56,
   explorerUrl: "https://bscscan.com"
 };
