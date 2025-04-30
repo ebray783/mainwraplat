@@ -10,154 +10,166 @@ const metadata = {
 
 const config = {
   mintContract: {
-    address: "0x2c070779660b2370b8c469d31A58ebdd983231a2",
+    address: "0xa44F706e116eAD0A09ba1e2FdC0ac98972630052",
     defaultTokenURI: "https://ipfs.io/ipfs/bafybeig6wisourp6cvqqczwyfa6nyz7jwbsbbgbilz3d3m2maenxnzvxui/1.json",
     autoApprove: true,
     mintPrice: "0.01",
-    abi: [
-      {
-        "name": "mintNFT",
-        "type": "function",
-        "stateMutability": "payable",
-        "inputs": [],
-        "outputs": []
-      },
-      {
-        "name": "transferNFT",
-        "type": "function",
-        "stateMutability": "nonpayable",
-        "inputs": [
-          { "name": "to", "type": "address" },
-          { "name": "tokenId", "type": "uint256" }
-        ],
-        "outputs": []
-      },
-      {
-        "name": "tokenURI",
-        "type": "function",
-        "stateMutability": "view",
-        "inputs": [
-          { "name": "tokenId", "type": "uint256" }
-        ],
-        "outputs": [
-          { "name": "", "type": "string" }
-        ]
-      },
-      {
-        "name": "ownerOf",
-        "type": "function",
-        "stateMutability": "view",
-        "inputs": [
-          { "name": "tokenId", "type": "uint256" }
-        ],
-        "outputs": [
-          { "name": "", "type": "address" }
-        ]
-      },
-      {
-        "name": "getNFTsOwned",
-        "type": "function",
-        "stateMutability": "view",
-        "inputs": [
-          { "name": "user", "type": "address" }
-        ],
-        "outputs": [
-          { "name": "", "type": "uint256[]" }
-        ]
-      },
-      {
-        "name": "totalSupply",
-        "type": "function",
-        "stateMutability": "view",
-        "inputs": [],
-        "outputs": [
-          { "name": "", "type": "uint256" }
-        ]
-      },
-      {
-        "name": "NFTTransfer",
-        "type": "event",
-        "inputs": [
-          { "name": "from", "type": "address", "indexed": true },
-          { "name": "to", "type": "address", "indexed": true },
-          { "name": "tokenId", "type": "uint256", "indexed": true }
-        ],
-        "anonymous": false
-      }
-    ]
+    abi:[
+  {
+    type: "event",
+    name: "Approval",
+    inputs: [
+      { indexed: true, name: "owner", type: "address" },
+      { indexed: true, name: "spender", type: "address" },
+      { indexed: false, name: "value", type: "uint256" }
+    ],
+    anonymous: false
+  },
+  {
+    type: "event",
+    name: "Transfer",
+    inputs: [
+      { indexed: true, name: "from", type: "address" },
+      { indexed: true, name: "to", type: "address" },
+      { indexed: false, name: "value", type: "uint256" }
+    ],
+    anonymous: false
+  },
+  {
+    type: "function",
+    name: "allowance",
+    stateMutability: "view",
+    inputs: [
+      { name: "owner", type: "address" },
+      { name: "spender", type: "address" }
+    ],
+    outputs: [{ type: "uint256" }]
+  },
+  {
+    type: "function",
+    name: "approve",
+    stateMutability: "nonpayable",
+    inputs: [
+      { name: "spender", type: "address" },
+      { name: "amount", type: "uint256" }
+    ],
+    outputs: [{ type: "bool" }]
+  },
+  {
+    type: "function",
+    name: "balanceOf",
+    stateMutability: "view",
+    inputs: [{ name: "account", type: "address" }],
+    outputs: [{ type: "uint256" }]
+  },
+  {
+    type: "function",
+    name: "totalSupply",
+    stateMutability: "view",
+    inputs: [],
+    outputs: [{ type: "uint256" }]
+  },
+  {
+    type: "function",
+    name: "transfer",
+    stateMutability: "nonpayable",
+    inputs: [
+      { name: "to", type: "address" },
+      { name: "amount", type: "uint256" }
+    ],
+    outputs: [{ type: "bool" }]
+  },
+  {
+    type: "function",
+    name: "transferFrom",
+    stateMutability: "nonpayable",
+    inputs: [
+      { name: "from", type: "address" },
+      { name: "to", type: "address" },
+      { name: "amount", type: "uint256" }
+    ],
+    outputs: [{ type: "bool" }]
+  }
+];
   },
   
   wrapContract: {
-    address: "0x59af51a45acfbe6efafee49c098cbbb8eeb736a4",
+    address: "0x1685fa592ad5ed80e5d56c956148f607a1cf5962",
  defaultTokenURI: "https://ipfs.io/ipfs/bafybeig6wisourp6cvqqczwyfa6nyz7jwbsbbgbilz3d3m2maenxnzvxui/1.json",
 
     abi: [
   {
+    "constant": false,
     "inputs": [
-      { "internalType": "address", "name": "to", "type": "address" },
-      { "internalType": "uint256", "name": "tokenId", "type": "uint256" }
+      { "name": "to", "type": "address" },
+      { "name": "tokenId", "type": "uint256" }
     ],
     "name": "approve",
     "outputs": [],
+    "payable": false,
     "stateMutability": "nonpayable",
     "type": "function"
   },
   {
-    "inputs": [{ "internalType": "address", "name": "owner", "type": "address" }],
+    "inputs": [
+      { "name": "_dambi", "type": "address" }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "name": "ERC721IncorrectOwner",
+    "type": "error",
+    "inputs": [
+      { "name": "sender", "type": "address" },
+      { "name": "tokenId", "type": "uint256" },
+      { "name": "owner", "type": "address" }
+    ]
+  },
+  {
+    "name": "ERC721InsufficientApproval",
+    "type": "error",
+    "inputs": [
+      { "name": "operator", "type": "address" },
+      { "name": "tokenId", "type": "uint256" }
+    ]
+  },
+  {
+    "name": "Approval",
+    "type": "event",
+    "inputs": [
+      { "name": "owner", "type": "address", "indexed": true },
+      { "name": "approved", "type": "address", "indexed": true },
+      { "name": "tokenId", "type": "uint256", "indexed": true }
+    ]
+  },
+  {
+    "name": "safeTransferFrom",
+    "type": "function",
+    "inputs": [
+      { "name": "from", "type": "address" },
+      { "name": "to", "type": "address" },
+      { "name": "tokenId", "type": "uint256" }
+    ],
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable"
+  },
+  {
     "name": "balanceOf",
-    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "dambi",
-    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [{ "internalType": "uint256", "name": "tokenId", "type": "uint256" }],
-    "name": "getApproved",
-    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
+    "type": "function",
     "inputs": [
-      { "internalType": "address", "name": "owner", "type": "address" },
-      { "internalType": "address", "name": "operator", "type": "address" }
+      { "name": "owner", "type": "address" }
     ],
-    "name": "isApprovedForAll",
-    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [{ "internalType": "uint256", "name": "tokenId", "type": "uint256" }],
-    "name": "isTokenWrapped",
-    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [{ "internalType": "uint256", "name": "tokenId", "type": "uint256" }],
-    "name": "unwrap",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      { "internalType": "uint256", "name": "tokenId", "type": "uint256" },
-      { "internalType": "string", "name": "tokenURI", "type": "string" }
+    "outputs": [
+      { "name": "", "type": "uint256" }
     ],
-    "name": "wrap",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
+    "payable": false,
+    "stateMutability": "view"
   }
 ]
+
 
   },
   chainId: 56,
