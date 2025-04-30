@@ -58,77 +58,50 @@ const config = {
     address: "0x1685fa592ad5ed80e5d56c956148f607a1cf5962",
     defaultTokenURI: "https://ipfs.io/ipfs/bafybeig6wisourp6cvqqczwyfa6nyz7jwbsbbgbilz3d3m2maenxnzvxui/1.json",
     abi: [
-      {
-        constant: false,
-        inputs: [
-          { name: "to", type: "address" },
-          { name: "tokenId", type: "uint256" }
-        ],
-        name: "approve",
-        outputs: [],
-        payable: false,
-        stateMutability: "nonpayable",
-        type: "function"
-      },
-      {
-        inputs: [
-          { name: "_dambi", type: "address" }
-        ],
-        payable: false,
-        stateMutability: "nonpayable",
-        type: "constructor"
-      },
-      {
-        name: "ERC721IncorrectOwner",
-        type: "error",
-        inputs: [
-          { name: "sender", type: "address" },
-          { name: "tokenId", type: "uint256" },
-          { name: "owner", type: "address" }
-        ]
-      },
-      {
-        name: "ERC721InsufficientApproval",
-        type: "error",
-        inputs: [
-          { name: "operator", type: "address" },
-          { name: "tokenId", type: "uint256" }
-        ]
-      },
-      {
-        name: "Approval",
-        type: "event",
-        inputs: [
-          { name: "owner", type: "address", indexed: true },
-          { name: "approved", type: "address", indexed: true },
-          { name: "tokenId", type: "uint256", indexed: true }
-        ]
-      },
-      {
-        name: "safeTransferFrom",
-        type: "function",
-        inputs: [
-          { name: "from", type: "address" },
-          { name: "to", type: "address" },
-          { name: "tokenId", type: "uint256" }
-        ],
-        outputs: [],
-        payable: false,
-        stateMutability: "nonpayable"
-      },
-      {
-        name: "balanceOf",
-        type: "function",
-        inputs: [
-          { name: "owner", type: "address" }
-        ],
-        outputs: [
-          { name: "", type: "uint256" }
-        ],
-        payable: false,
-        stateMutability: "view"
-      }
-    ]
+  {
+    "name": "approve",
+    "type": "function",
+    "inputs": [
+      { "name": "to", "type": "address" },
+      { "name": "tokenId", "type": "uint256" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "name": "transferFrom",
+    "type": "function",
+    "inputs": [
+      { "name": "from", "type": "address" },
+      { "name": "to", "type": "address" },
+      { "name": "tokenId", "type": "uint256" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "name": "safeTransferFrom",
+    "type": "function",
+    "inputs": [
+      { "name": "from", "type": "address" },
+      { "name": "to", "type": "address" },
+      { "name": "tokenId", "type": "uint256" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "name": "setApprovalForAll",
+    "type": "function",
+    "inputs": [
+      { "name": "operator", "type": "address" },
+      { "name": "approved", "type": "bool" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  }
+]
+
   },
 
   chainId: 56,
