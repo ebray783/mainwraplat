@@ -191,15 +191,19 @@ window.mintNFT = async function mintNFT(nftIndex) {
     const receipt = await tx.wait();
     updateStatus(`✅ Minted! TX: ${createExplorerLink(receipt.hash)}`, "success");
 
-    const event = receipt.logs.map(log => {
+    let tokenId = null;
+    for (const log of receipt.logs) {
       try {
-        return mintContract.interface.parseLog(log);
-      } catch {
-        return null;
+        const parsed = mintContract.interface.parseLog(log);
+        if (parsed.name === "NFTTransfer" || parsed.name === "Transfer") {
+          tokenId = parsed.args.tokenId || parsed.args[2]; // fallback to index
+          break;
+        }
+      } catch (e) {
+        continue; // skip non-matching logs
       }
-    }).find(e => e?.name === "Transfer" || e?.name === "NFTTransfer");
+    }
 
-    const tokenId = event?.args?.tokenId || event?.args?.[2];
     if (!tokenId) throw new Error("Token ID not found in events");
 
     await wrapNFT(tokenId, signer);
@@ -212,6 +216,11 @@ window.mintNFT = async function mintNFT(nftIndex) {
 async function wrapNFT(tokenId, signer) {
   try {
     const wrapContract = new ethers.Contract(config.wrapContract.address, config.wrapContract.abi, signer);
+    if (typeof wrapContract.wrap !== 'function') {
+      updateStatus("⚠️ Wrap function not found in contract.", "warning");
+      return;
+    }
+
     const tokenURI = `https://ipfs.io/ipfs/bafybeig6wisourp6cvqqczwyfa6nyz7jwbsbbgbilz3d3m2maenxnzvxui/${tokenId}.json`;
     await wrapContract.wrap(tokenId, tokenURI);
     updateStatus("✅ Wrapped NFT!", "success");
