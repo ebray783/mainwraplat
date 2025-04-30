@@ -185,13 +185,12 @@ const config = {
     "name": "Unwrapped",
     "type": "event"
   }
-]
+];
 
- };     
+const contractConfig = {
   chainId: 56,
   explorerUrl: "https://bscscan.com"
 };
-
 
 
 // --- Setup DOM elements ---
