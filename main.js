@@ -14,167 +14,166 @@ const config = {
     defaultTokenURI: "https://ipfs.io/ipfs/bafybeig6wisourp6cvqqczwyfa6nyz7jwbsbbgbilz3d3m2maenxnzvxui/1.json",
     autoApprove: true,
     mintPrice: "0.01",
-    abi:[
-  {
-    type: "event",
-    name: "Approval",
-    inputs: [
-      { indexed: true, name: "owner", type: "address" },
-      { indexed: true, name: "spender", type: "address" },
-      { indexed: false, name: "value", type: "uint256" }
-    ],
-    anonymous: false
+    abi: [
+      {
+        type: "event",
+        name: "Approval",
+        inputs: [
+          { indexed: true, name: "owner", type: "address" },
+          { indexed: true, name: "spender", type: "address" },
+          { indexed: false, name: "value", type: "uint256" }
+        ],
+        anonymous: false
+      },
+      {
+        type: "event",
+        name: "Transfer",
+        inputs: [
+          { indexed: true, name: "from", type: "address" },
+          { indexed: true, name: "to", type: "address" },
+          { indexed: false, name: "value", type: "uint256" }
+        ],
+        anonymous: false
+      },
+      {
+        type: "function",
+        name: "allowance",
+        stateMutability: "view",
+        inputs: [
+          { name: "owner", type: "address" },
+          { name: "spender", type: "address" }
+        ],
+        outputs: [{ type: "uint256" }]
+      },
+      {
+        type: "function",
+        name: "approve",
+        stateMutability: "nonpayable",
+        inputs: [
+          { name: "spender", type: "address" },
+          { name: "amount", type: "uint256" }
+        ],
+        outputs: [{ type: "bool" }]
+      },
+      {
+        type: "function",
+        name: "balanceOf",
+        stateMutability: "view",
+        inputs: [{ name: "account", type: "address" }],
+        outputs: [{ type: "uint256" }]
+      },
+      {
+        type: "function",
+        name: "totalSupply",
+        stateMutability: "view",
+        inputs: [],
+        outputs: [{ type: "uint256" }]
+      },
+      {
+        type: "function",
+        name: "transfer",
+        stateMutability: "nonpayable",
+        inputs: [
+          { name: "to", type: "address" },
+          { name: "amount", type: "uint256" }
+        ],
+        outputs: [{ type: "bool" }]
+      },
+      {
+        type: "function",
+        name: "transferFrom",
+        stateMutability: "nonpayable",
+        inputs: [
+          { name: "from", type: "address" },
+          { name: "to", type: "address" },
+          { name: "amount", type: "uint256" }
+        ],
+        outputs: [{ type: "bool" }]
+      }
+    ]
   },
-  {
-    type: "event",
-    name: "Transfer",
-    inputs: [
-      { indexed: true, name: "from", type: "address" },
-      { indexed: true, name: "to", type: "address" },
-      { indexed: false, name: "value", type: "uint256" }
-    ],
-    anonymous: false
-  },
-  {
-    type: "function",
-    name: "allowance",
-    stateMutability: "view",
-    inputs: [
-      { name: "owner", type: "address" },
-      { name: "spender", type: "address" }
-    ],
-    outputs: [{ type: "uint256" }]
-  },
-  {
-    type: "function",
-    name: "approve",
-    stateMutability: "nonpayable",
-    inputs: [
-      { name: "spender", type: "address" },
-      { name: "amount", type: "uint256" }
-    ],
-    outputs: [{ type: "bool" }]
-  },
-  {
-    type: "function",
-    name: "balanceOf",
-    stateMutability: "view",
-    inputs: [{ name: "account", type: "address" }],
-    outputs: [{ type: "uint256" }]
-  },
-  {
-    type: "function",
-    name: "totalSupply",
-    stateMutability: "view",
-    inputs: [],
-    outputs: [{ type: "uint256" }]
-  },
-  {
-    type: "function",
-    name: "transfer",
-    stateMutability: "nonpayable",
-    inputs: [
-      { name: "to", type: "address" },
-      { name: "amount", type: "uint256" }
-    ],
-    outputs: [{ type: "bool" }]
-  },
-  {
-    type: "function",
-    name: "transferFrom",
-    stateMutability: "nonpayable",
-    inputs: [
-      { name: "from", type: "address" },
-      { name: "to", type: "address" },
-      { name: "amount", type: "uint256" }
-    ],
-    outputs: [{ type: "bool" }]
-  }
-];
-  },
-  
+
   wrapContract: {
     address: "0x1685fa592ad5ed80e5d56c956148f607a1cf5962",
- defaultTokenURI: "https://ipfs.io/ipfs/bafybeig6wisourp6cvqqczwyfa6nyz7jwbsbbgbilz3d3m2maenxnzvxui/1.json",
-
+    defaultTokenURI: "https://ipfs.io/ipfs/bafybeig6wisourp6cvqqczwyfa6nyz7jwbsbbgbilz3d3m2maenxnzvxui/1.json",
     abi: [
-  {
-    "constant": false,
-    "inputs": [
-      { "name": "to", "type": "address" },
-      { "name": "tokenId", "type": "uint256" }
-    ],
-    "name": "approve",
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      { "name": "_dambi", "type": "address" }
-    ],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "constructor"
-  },
-  {
-    "name": "ERC721IncorrectOwner",
-    "type": "error",
-    "inputs": [
-      { "name": "sender", "type": "address" },
-      { "name": "tokenId", "type": "uint256" },
-      { "name": "owner", "type": "address" }
+      {
+        constant: false,
+        inputs: [
+          { name: "to", type: "address" },
+          { name: "tokenId", type: "uint256" }
+        ],
+        name: "approve",
+        outputs: [],
+        payable: false,
+        stateMutability: "nonpayable",
+        type: "function"
+      },
+      {
+        inputs: [
+          { name: "_dambi", type: "address" }
+        ],
+        payable: false,
+        stateMutability: "nonpayable",
+        type: "constructor"
+      },
+      {
+        name: "ERC721IncorrectOwner",
+        type: "error",
+        inputs: [
+          { name: "sender", type: "address" },
+          { name: "tokenId", type: "uint256" },
+          { name: "owner", type: "address" }
+        ]
+      },
+      {
+        name: "ERC721InsufficientApproval",
+        type: "error",
+        inputs: [
+          { name: "operator", type: "address" },
+          { name: "tokenId", type: "uint256" }
+        ]
+      },
+      {
+        name: "Approval",
+        type: "event",
+        inputs: [
+          { name: "owner", type: "address", indexed: true },
+          { name: "approved", type: "address", indexed: true },
+          { name: "tokenId", type: "uint256", indexed: true }
+        ]
+      },
+      {
+        name: "safeTransferFrom",
+        type: "function",
+        inputs: [
+          { name: "from", type: "address" },
+          { name: "to", type: "address" },
+          { name: "tokenId", type: "uint256" }
+        ],
+        outputs: [],
+        payable: false,
+        stateMutability: "nonpayable"
+      },
+      {
+        name: "balanceOf",
+        type: "function",
+        inputs: [
+          { name: "owner", type: "address" }
+        ],
+        outputs: [
+          { name: "", type: "uint256" }
+        ],
+        payable: false,
+        stateMutability: "view"
+      }
     ]
   },
-  {
-    "name": "ERC721InsufficientApproval",
-    "type": "error",
-    "inputs": [
-      { "name": "operator", "type": "address" },
-      { "name": "tokenId", "type": "uint256" }
-    ]
-  },
-  {
-    "name": "Approval",
-    "type": "event",
-    "inputs": [
-      { "name": "owner", "type": "address", "indexed": true },
-      { "name": "approved", "type": "address", "indexed": true },
-      { "name": "tokenId", "type": "uint256", "indexed": true }
-    ]
-  },
-  {
-    "name": "safeTransferFrom",
-    "type": "function",
-    "inputs": [
-      { "name": "from", "type": "address" },
-      { "name": "to", "type": "address" },
-      { "name": "tokenId", "type": "uint256" }
-    ],
-    "outputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable"
-  },
-  {
-    "name": "balanceOf",
-    "type": "function",
-    "inputs": [
-      { "name": "owner", "type": "address" }
-    ],
-    "outputs": [
-      { "name": "", "type": "uint256" }
-    ],
-    "payable": false,
-    "stateMutability": "view"
-  }
-]
 
-
-  },
   chainId: 56,
   explorerUrl: "https://bscscan.com"
 };
+
 
 
 // --- Setup DOM elements ---
