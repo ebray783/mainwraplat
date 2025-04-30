@@ -187,8 +187,6 @@ const config = {
   }
 ];
 
-  },
-
   chainId: 56,
   explorerUrl: "https://bscscan.com"
 };
